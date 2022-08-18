@@ -69,21 +69,51 @@ def extract_tags(url, tag):
 
 	return taglines
 
+def bla(url, count, position):
+	"""
+	"""
+
+	cnt = 0
+	while cnt < count:
+
+		html = urllib.request.urlopen(url).read()
+		soup = BeautifulSoup(html, 'html.parser')
+		tag_list = soup('a')
+
+		for index, item in enumerate(tag_list):
+			if index == position-1:
+				url = item.get('href', None)
+				name = item.contents[0]
+				break
+			else:
+				continue
+		cnt += 1
+
+	print('Last name:', name)
+
+
 if __name__=='__main__':
 	"""
 	Example usage.
 	"""
 
-	sample_file_1 = 'http://py4e-data.dr-chuck.net/regex_sum_42.txt'
-	actual_file_1 = 'http://py4e-data.dr-chuck.net/regex_sum_1629605.txt'
+	file_sample = 'http://py4e-data.dr-chuck.net/regex_sum_42.txt'
+	file_actual = 'http://py4e-data.dr-chuck.net/regex_sum_1629605.txt'
 
-	n = extract_integers(actual_file_1, 'url')
+	n = extract_integers(file_actual, 'url')
 	print(sum(n))
 
 
-	url_test = 'http://py4e-data.dr-chuck.net/comments_42.html'
+	url_sample = 'http://py4e-data.dr-chuck.net/comments_42.html'
 	url_actual = 'http://py4e-data.dr-chuck.net/comments_1629607.html'
 
 	m = extract_tags(url_actual, 'span')
 	mn = extract_integers(m, 'list')
 	print(sum(mn))
+
+
+	problem_sample = 'http://py4e-data.dr-chuck.net/known_by_Fikret.html'
+	problem_actual = 'http://py4e-data.dr-chuck.net/known_by_Jessamy.html'
+
+	o = bla(problem_sample, 4, 3)
+	p = bla(problem_actual, 7, 18)
