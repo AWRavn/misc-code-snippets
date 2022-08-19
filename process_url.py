@@ -69,8 +69,18 @@ def extract_tags(url, tag):
 
 	return taglines
 
-def bla(url, count, position):
+def web_crawl(url, count, position):
 	"""
+	Web crawl through the url, going into scraped url in position, 
+	then repeat the process count times.
+
+	Args:
+		url (string): Source URL.
+		count (int): Number of loops.		
+		position (int): Index of next url.
+
+	Returns:
+		name (str): Name associated with the last selected url.
 	"""
 
 	cnt = 0
@@ -115,5 +125,5 @@ if __name__=='__main__':
 	problem_sample = 'http://py4e-data.dr-chuck.net/known_by_Fikret.html'
 	problem_actual = 'http://py4e-data.dr-chuck.net/known_by_Jessamy.html'
 
-	o = bla(problem_sample, 4, 3)
-	p = bla(problem_actual, 7, 18)
+	o = web_crawl(problem_sample, 4, 3)
+	p = web_crawl(problem_actual, 7, 18)
